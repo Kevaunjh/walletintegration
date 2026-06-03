@@ -1,23 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import Signup from './Signup';
-import Login from './Login';
-import bnwLogo from './../../images/bnwbanx.png';
-import { auth, provider, signInWithPopup, signInWithRedirect, getRedirectResult } from '../../firebase';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import Signup from "./Signup";
+import Login from "./Login";
+import bnwLogo from "./../../images/bnwbanx.png";
+import {
+  auth,
+  provider,
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
+} from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const AccountManagement = () => {
-  const [view, setView] = useState('home');
+  const [view, setView] = useState("home");
   const navigate = useNavigate();
 
-  const handleSignUpClick = () => setView('signup');
-  const handleLoginClick = () => setView('login');
+  const handleSignUpClick = () => setView("signup");
+  const handleLoginClick = () => setView("login");
 
   useEffect(() => {
     const handleRedirectResult = async () => {
       try {
         const result = await getRedirectResult(auth);
         if (result) {
-          navigate('/Loading');
+          navigate("/Loading");
         }
       } catch (error) {
         console.error("Error handling Google sign-in redirect:", error);
@@ -35,17 +41,17 @@ const AccountManagement = () => {
       } else {
         await signInWithPopup(auth, provider);
       }
-      navigate('/Loading');
+      navigate("/Loading");
     } catch (error) {
       console.error("Error signing in with Google:", error);
     }
   };
 
-  if (view === 'signup') {
+  if (view === "signup") {
     return <Signup />;
   }
 
-  if (view === 'login') {
+  if (view === "login") {
     return <Login />;
   }
 
