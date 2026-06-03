@@ -1,4 +1,4 @@
-# Wallet Integration
+# Banx
 
 ### Live Deployment
 [Wallet Banking Application](https://walletintegration-kevaunjhs-projects.vercel.app/)
